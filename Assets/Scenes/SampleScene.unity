@@ -3355,6 +3355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 2794820051972985497, guid: 70ad3dfb0a3278240814272cb26d2a77, type: 3}
+      propertyPath: LevelLoad
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5684599719775432555, guid: 70ad3dfb0a3278240814272cb26d2a77, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -3369,7 +3373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5684599719775432555, guid: 70ad3dfb0a3278240814272cb26d2a77, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.5
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 5684599719775432555, guid: 70ad3dfb0a3278240814272cb26d2a77, type: 3}
       propertyPath: m_LocalRotation.w

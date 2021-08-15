@@ -6,5 +6,6 @@ public enum LevelSettingsEnum
 {
     none,
     SampleScene,
-    Hub
+    Hub,
+    Penis
 }
