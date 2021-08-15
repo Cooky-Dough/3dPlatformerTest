@@ -1,20 +1,23 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ThreeDeePlatformerTest.Scripts.TempSettings;
 
-public class DoorScript : MonoBehaviour
+namespace ThreeDeePlatformerTest.Scripts
 {
-    public LevelSettingsEnum LevelLoad;
-
-    void OnTriggerStayy(Collider other)
+    public class DoorScript : MonoBehaviour
     {
-        if (other.gameObject.layer != 6)
+        public LevelSettingsEnum LevelLoad;
+        public Vector3 NextLevelPlayerVector;
+
+        void LoadSceneByDoorTrigger(Collider other)
         {
-            return;
-        }
-        // if (Input.GetButtonDown("Jump"))
-        // {
+            if (other.gameObject.layer != 6)
+            {
+                return;
+            }
+            PlayerSettings.PlayerStartPosition = NextLevelPlayerVector;
             Debug.Log($"LoadScene {LevelLoad}");
             SceneManager.LoadSceneAsync(LevelLoad.ToString(), LoadSceneMode.Single);
-        // }
+        }
     }
 }

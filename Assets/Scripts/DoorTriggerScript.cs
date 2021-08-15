@@ -39,9 +39,6 @@ public class DoorTriggerScript : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerStay(Collider other)
     {
-        Debug.Log(_messageSendForTrigger);
-        Debug.Log(_messageSendForTrigger);
-        Debug.Log(_enterDoor);
         if (other.gameObject.layer != 6 || _messageSendForTrigger)
         {
             return;
@@ -49,7 +46,7 @@ public class DoorTriggerScript : MonoBehaviour
         if (_enterDoor)
         {
             Debug.Log("MessageSend");
-            SendMessageUpwards("OnTriggerStayy", other);
+            SendMessageUpwards("LoadSceneByDoorTrigger", other);
             _messageSendForTrigger = true;
         }
     }

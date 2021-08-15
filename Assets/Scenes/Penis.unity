@@ -345,6 +345,14 @@ PrefabInstance:
       propertyPath: LevelLoad
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2794820051972985497, guid: 70ad3dfb0a3278240814272cb26d2a77, type: 3}
+      propertyPath: NextLevelPlayerVector.x
+      value: 10.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794820051972985497, guid: 70ad3dfb0a3278240814272cb26d2a77, type: 3}
+      propertyPath: NextLevelPlayerVector.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5684599719775432555, guid: 70ad3dfb0a3278240814272cb26d2a77, type: 3}
       propertyPath: m_RootOrder
       value: 3

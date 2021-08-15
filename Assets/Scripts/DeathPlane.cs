@@ -12,7 +12,7 @@ namespace ThreeDeePlatformerTest.Scripts
         // Start is called before the first frame update
         void Start()
         {
-            RespawnPositions = new List<Vector3> { Component.FindObjectsOfType<Transform>().First(x => x.name == "DefaultSpawn").transform.position };
+            RespawnPositions = new List<Vector3> { Component.FindObjectsOfType<Transform>().First(x => x.name == "Player").transform.position };
         }
 
         void OnTriggerEnter(Collider other)

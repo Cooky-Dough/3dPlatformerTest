@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using ThreeDeePlatformerTest.Scripts;
+using ThreeDeePlatformerTest.Scripts.TempSettings;
 using UnityEngine;
 
 namespace ThreeDeePlatformerTest.Scripts
@@ -26,6 +26,10 @@ namespace ThreeDeePlatformerTest.Scripts
         void Start()
         {
             _player = GetComponent<Rigidbody>();
+            if (PlayerSettings.PlayerStartPosition.HasValue)
+            {
+                GetComponent<Transform>().position = PlayerSettings.PlayerStartPosition.Value;
+            }
             _isGrounded = true;
         }
 
