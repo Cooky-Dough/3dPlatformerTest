@@ -5,16 +5,16 @@ public class DoorScript : MonoBehaviour
 {
     public LevelSettingsEnum LevelLoad;
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStayy(Collider other)
     {
         if (other.gameObject.layer != 6)
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
+        // if (Input.GetButtonDown("Jump"))
+        // {
             Debug.Log($"LoadScene {LevelLoad}");
-            SceneManager.LoadScene(LevelLoad.ToString(), LoadSceneMode.Single);
-        }
+            SceneManager.LoadSceneAsync(LevelLoad.ToString(), LoadSceneMode.Single);
+        // }
     }
 }

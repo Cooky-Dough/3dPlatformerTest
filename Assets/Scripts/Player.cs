@@ -9,10 +9,12 @@ namespace ThreeDeePlatformerTest.Scripts
     {
         [SerializeField] private Transform groundCheckTransform;
         [SerializeField] private LayerMask _playerMask;
+        [SerializeField] private LayerMask _doorMask;
 
         private Rigidbody _player;
 
         private bool _isGrounded;
+        private bool _isInDoorMask;
 
         private bool _jumpButtonPressed;
         private float _horizontalInput;
@@ -38,7 +40,7 @@ namespace ThreeDeePlatformerTest.Scripts
                 return;
             }
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && !_isInDoorMask)
             {
                 _jumpButtonPressed = true;
             }
@@ -48,6 +50,7 @@ namespace ThreeDeePlatformerTest.Scripts
 
         void FixedUpdate()
         {
+            _isInDoorMask = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, _doorMask).Length != 0;
             _isGrounded = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, _playerMask).Length != 0;
             Jump();
 
@@ -75,6 +78,11 @@ namespace ThreeDeePlatformerTest.Scripts
 
         private void Jump()
         {
+            if (_isInDoorMask)
+            {
+                return;
+            }
+            
             if (_jumpButtonPressed && (_isGrounded || _doubleJumpAvailable))
             {
                 if (!_isGrounded)
