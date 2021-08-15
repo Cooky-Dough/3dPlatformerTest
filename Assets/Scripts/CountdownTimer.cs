@@ -8,7 +8,7 @@ namespace ThreeDeePlatformerTest.Scripts
     public class CountdownTimer : MonoBehaviour
     {
         private float _currentTime;
-        private float _timeLimit = 120f;
+        private float _timeLimit = 5f;
 
         private Text _timer;
 
