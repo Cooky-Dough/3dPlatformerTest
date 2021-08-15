@@ -8,14 +8,11 @@ namespace ThreeDeePlatformerTest.Scripts
     public class Player : MonoBehaviour
     {
         [SerializeField] private Transform groundCheckTransform;
-        // [SerializeField] private Transform _rightSideCheckTransform;
         [SerializeField] private LayerMask _playerMask;
 
         private Rigidbody _player;
 
         private bool _isGrounded;
-
-        private bool _isRightSided;
 
         private bool _jumpButtonPressed;
         private float _horizontalInput;
@@ -46,17 +43,13 @@ namespace ThreeDeePlatformerTest.Scripts
                 _jumpButtonPressed = true;
             }
 
-            _horizontalInput = Input.GetAxis("Horizontal") * 28.7f;
+            _horizontalInput = Input.GetAxis("Horizontal") * 2.7f;
         }
 
         void FixedUpdate()
         {
             _isGrounded = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, _playerMask).Length != 0;
             Jump();
-
-            // _isRightSided = Physics.OverlapSphere(_rightSideCheckTransform.position, 0.1F, _playerMask).Length != 0;
-
-            _isGrounded = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, _playerMask).Length != 0;
 
             _player.velocity = new Vector3(_horizontalInput, _player.velocity.y, _player.velocity.z);
         }
@@ -82,7 +75,7 @@ namespace ThreeDeePlatformerTest.Scripts
 
         private void Jump()
         {
-            if (_jumpButtonPressed && (_isGrounded || _doubleJumpAvailable) && !_isRightSided)
+            if (_jumpButtonPressed && (_isGrounded || _doubleJumpAvailable))
             {
                 if (!_isGrounded)
                 {
@@ -91,12 +84,6 @@ namespace ThreeDeePlatformerTest.Scripts
                 _player.AddForce(Vector3.up * 7, ForceMode.VelocityChange);
                 _jumpButtonPressed = !_jumpButtonPressed;
             }
-
-            // if (_jumpButtonPressed && _isRightSided)
-            // {
-            //     _player.AddForce(Vector3.left * 15, ForceMode.VelocityChange);
-            //     _player.AddForce(Vector3.up, ForceMode.VelocityChange);
-            // }
 
             if (_isGrounded)
             {
