@@ -8,10 +8,12 @@ namespace ThreeDeePlatformerTest.Scripts
     public class Player : MonoBehaviour
     {
         [SerializeField] private Transform groundCheckTransform;
+        [SerializeField] private Transform cameraTransform;
         [SerializeField] private LayerMask _playerMask;
         [SerializeField] private LayerMask _doorMask;
 
         private Rigidbody _player;
+        private Transform _playerTransform;
 
         private bool _isGrounded;
         private bool _isInDoorMask;
@@ -26,6 +28,7 @@ namespace ThreeDeePlatformerTest.Scripts
         void Start()
         {
             _player = GetComponent<Rigidbody>();
+            _playerTransform = GetComponent<Transform>();
             if (PlayerSettings.PlayerStartPosition.HasValue)
             {
                 GetComponent<Transform>().position = PlayerSettings.PlayerStartPosition.Value;
@@ -50,6 +53,18 @@ namespace ThreeDeePlatformerTest.Scripts
             }
 
             _horizontalInput = Input.GetAxis("Horizontal") * 2.7f;
+
+            if (_horizontalInput > 0)
+            {
+                _playerTransform.transform.forward = new Vector3(90, 0, 0);
+            }
+
+            if (_horizontalInput < 0)
+            {
+                _playerTransform.transform.forward = new Vector3(-90, 0, 0);
+            }
+
+            cameraTransform.transform.position = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y, -7f);
         }
 
         void FixedUpdate()

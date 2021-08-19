@@ -15,6 +15,7 @@ namespace ThreeDeePlatformerTest.Scripts
             {
                 return;
             }
+            Score.ScoreValue = 0;
             PlayerSettings.PlayerStartPosition = NextLevelPlayerVector;
             Debug.Log($"LoadScene {LevelLoad}");
             SceneManager.LoadSceneAsync(LevelLoad.ToString(), LoadSceneMode.Single);
