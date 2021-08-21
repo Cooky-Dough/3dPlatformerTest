@@ -39,6 +39,10 @@ namespace ThreeDeePlatformerTest.Scripts
         // Update is called once per frame
         void Update()
         {
+            if (GameOverScript.IsPaused)
+            {
+                return;
+            }
             SetGravity();
             if (GameOverScript.IsGameOver)
             {
@@ -69,6 +73,10 @@ namespace ThreeDeePlatformerTest.Scripts
 
         void FixedUpdate()
         {
+            if (GameOverScript.IsPaused)
+            {
+                return;
+            }
             _isInDoorMask = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, _doorMask).Length != 0;
             _isGrounded = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, _playerMask).Length != 0;
             Jump();

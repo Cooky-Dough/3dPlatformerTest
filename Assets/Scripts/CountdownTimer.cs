@@ -7,8 +7,13 @@ namespace ThreeDeePlatformerTest.Scripts
 {
     public class CountdownTimer : MonoBehaviour
     {
+        public bool isEnabled = true;
+
+        public static bool isPaused = false;
+        
+        public float _timeLimit = 120f;
+
         private float _currentTime;
-        private float _timeLimit = 120f;
 
         private Text _timer;
 
@@ -22,6 +27,15 @@ namespace ThreeDeePlatformerTest.Scripts
         // Update is called once per frame
         void Update()
         {
+            if (!isEnabled)
+            {
+                _timer.text = null;
+                return;
+            }
+            if (isPaused)
+            {
+                return;
+            }
 
             if (_currentTime <= 0f)
             {
