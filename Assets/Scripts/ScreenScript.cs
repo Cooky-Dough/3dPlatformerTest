@@ -8,7 +8,7 @@ using System.Linq;
 // TODO: Rename file.
 namespace ThreeDeePlatformerTest.Scripts
 {
-    public class GameOverScript : MonoBehaviour
+    public class ScreenScript : MonoBehaviour
     {
         public static bool IsGameOver { get; set; }
         public static bool IsPaused { get; set; }
@@ -70,6 +70,7 @@ namespace ThreeDeePlatformerTest.Scripts
             SetGameOverScreen();
             if (Input.GetButtonDown("Cancel"))
             {
+                Debug.Log("CancelP{ress");
                 IsPaused = !IsPaused;
             }
             SetPauseScreen();
