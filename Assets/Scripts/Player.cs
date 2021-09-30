@@ -11,9 +11,11 @@ namespace ThreeDeePlatformerTest.Scripts
         [SerializeField] private Transform cameraTransform;
         [SerializeField] private LayerMask _playerMask;
         [SerializeField] private LayerMask _doorMask;
+        [SerializeField] private bool run;
 
         private Rigidbody _player;
         private Transform _playerTransform;
+        private Animator animator;
 
         private bool _isGrounded;
         private bool _isInDoorMask;
@@ -29,6 +31,7 @@ namespace ThreeDeePlatformerTest.Scripts
         {
             _player = GetComponent<Rigidbody>();
             _playerTransform = GetComponent<Transform>();
+            animator = GetComponent<Animator>();
             if (PlayerSettings.PlayerStartPosition.HasValue)
             {
                 GetComponent<Transform>().position = PlayerSettings.PlayerStartPosition.Value;
@@ -67,6 +70,15 @@ namespace ThreeDeePlatformerTest.Scripts
             if (_horizontalInput < 0)
             {
                 _playerTransform.transform.forward = new Vector3(-90, 0, 0);
+            }
+
+            if (_horizontalInput == 0)
+            {
+                animator.SetBool("run", false);
+            }
+            else
+            {
+                animator.SetBool("run", true);
             }
 
             cameraTransform.transform.position = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y, -7f);
@@ -111,7 +123,7 @@ namespace ThreeDeePlatformerTest.Scripts
             {
                 return;
             }
-            
+
             if (_jumpButtonPressed && (_isGrounded || _doubleJumpAvailable))
             {
                 Debug.Log("Jump");
