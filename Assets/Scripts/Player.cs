@@ -56,7 +56,6 @@ namespace ThreeDeePlatformerTest.Scripts
 
             if (Input.GetButtonDown("Jump") && !_isInDoorMask)
             {
-                // updateJump();
                 _jumpButtonPressed = true;
             }
 
@@ -93,7 +92,7 @@ namespace ThreeDeePlatformerTest.Scripts
             }
             _isInDoorMask = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, _doorMask).Length != 0;
             _isGrounded = Physics.OverlapSphere(groundCheckTransform.position, 0.1f, _playerMask).Length != 0;
-            // transform.Translate(_horizontalInput, 0, 0);
+            
             Jump();
             _player.velocity = new Vector3(_horizontalInput, _player.velocity.y, _player.velocity.z);
         }
@@ -131,7 +130,7 @@ namespace ThreeDeePlatformerTest.Scripts
                 {
                     _doubleJumpAvailable = false;
                 }
-                _player.AddForce(new Vector3(0,5,0), ForceMode.Impulse);
+                _player.AddForce(new Vector3(0,7,0), ForceMode.Impulse);
                 _jumpButtonPressed = !_jumpButtonPressed;
             }
 
