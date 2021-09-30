@@ -117,7 +117,7 @@ namespace ThreeDeePlatformerTest.Scripts
             if (ScreenScript.IsGameOver)
             {
                 Physics.gravity = Vector3.zero;
-                animator.enabled = false;
+                
                 return;
             }
             Physics.gravity = _gravity;

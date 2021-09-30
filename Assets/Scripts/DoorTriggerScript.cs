@@ -45,7 +45,6 @@ public class DoorTriggerScript : MonoBehaviour
         }
         if (_enterDoor)
         {
-            Debug.Log("MessageSend");
             SendMessageUpwards("LoadSceneByDoorTrigger", other);
             _messageSendForTrigger = true;
         }

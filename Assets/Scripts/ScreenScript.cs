@@ -34,7 +34,6 @@ namespace ThreeDeePlatformerTest.Scripts
             IsPaused = false;
             var canvas = GetComponent<Canvas>();
 
-            Debug.Log(canvas.GetComponentsInChildren<Image>().First(x => x.name == "GameOverImage"));
             _gameOverImage = canvas.GetComponentsInChildren<Image>().First(x => x.name == "GameOverImage");
             _gameOverText = _gameOverImage.GetComponentInChildren<Text>();
             _restartButton = _gameOverImage.GetComponentInChildren<Button>();
@@ -56,7 +55,6 @@ namespace ThreeDeePlatformerTest.Scripts
 
         public void RestartButton()
         {
-            Debug.Log("Restart");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
@@ -67,10 +65,16 @@ namespace ThreeDeePlatformerTest.Scripts
 
         void Update()
         {
-            SetGameOverScreen();
+            if (!IsPaused)
+            {
+                SetGameOverScreen();
+            }
+            if (IsGameOver)
+            {
+                return;
+            }
             if (Input.GetButtonDown("Cancel"))
             {
-                Debug.Log("CancelP{ress");
                 IsPaused = !IsPaused;
             }
             SetPauseScreen();
@@ -78,6 +82,7 @@ namespace ThreeDeePlatformerTest.Scripts
 
         private void SetGameOverScreen()
         {
+            Time.timeScale = IsGameOver ? 0 : 1;
             _gameOverText.gameObject.SetActive(IsGameOver);
             _gameOverImage.enabled = IsGameOver;
             _restartButton.gameObject.SetActive(IsGameOver);
