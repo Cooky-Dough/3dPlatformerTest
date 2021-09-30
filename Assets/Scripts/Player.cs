@@ -40,12 +40,12 @@ namespace ThreeDeePlatformerTest.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (GameOverScript.IsPaused)
+            if (ScreenScript.IsPaused)
             {
                 return;
             }
             SetGravity();
-            if (GameOverScript.IsGameOver)
+            if (ScreenScript.IsGameOver)
             {
                 _horizontalInput = 0f;
                 _player.velocity = Vector3.zero;
@@ -92,7 +92,7 @@ namespace ThreeDeePlatformerTest.Scripts
 
         void FixedUpdate()
         {
-            if (GameOverScript.IsPaused)
+            if (ScreenScript.IsPaused)
             {
                 return;
             }
@@ -114,9 +114,10 @@ namespace ThreeDeePlatformerTest.Scripts
 
         private void SetGravity()
         {
-            if (GameOverScript.IsGameOver)
+            if (ScreenScript.IsGameOver)
             {
                 Physics.gravity = Vector3.zero;
+                animator.enabled = false;
                 return;
             }
             Physics.gravity = _gravity;
@@ -131,8 +132,6 @@ namespace ThreeDeePlatformerTest.Scripts
 
             if (_jumpButtonPressed && (_isGrounded || _doubleJumpAvailable))
             {
-                Debug.Log(_player.velocity);
-
                 var velocity = _player.velocity;
                 var jumpVector3 = new Vector3(0, jumpStrength, 0);
                 if (!_isGrounded)

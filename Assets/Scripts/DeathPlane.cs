@@ -22,7 +22,7 @@ namespace ThreeDeePlatformerTest.Scripts
 
                 if (Score.ScoreValue <= 0)
                 {
-                    GameOverScript.IsGameOver = true;
+                    ScreenScript.IsGameOver = true;
                 }
                 else
                 {

@@ -39,7 +39,7 @@ namespace ThreeDeePlatformerTest.Scripts
 
             if (_currentTime <= 0f)
             {
-                GameOverScript.IsGameOver = true;
+                ScreenScript.IsGameOver = true;
             }
             else
             {
