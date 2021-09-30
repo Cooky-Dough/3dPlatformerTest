@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using ThreeDeePlatformerTest.Scripts.TempSettings;
 using UnityEngine;
 
@@ -11,7 +9,7 @@ namespace ThreeDeePlatformerTest.Scripts
         [SerializeField] private Transform cameraTransform;
         [SerializeField] private LayerMask _playerMask;
         [SerializeField] private LayerMask _doorMask;
-        [SerializeField] private bool run;
+        [SerializeField] private float jumpStrength;
 
         private Rigidbody _player;
         private Transform _playerTransform;
@@ -61,6 +59,25 @@ namespace ThreeDeePlatformerTest.Scripts
 
             _horizontalInput = Input.GetAxis("Horizontal") * 2.7f;
 
+            TurnTransforms();
+
+            SetAnimations();
+        }
+
+        private void SetAnimations()
+        {
+            if (_horizontalInput == 0)
+            {
+                animator.SetBool("run", false);
+            }
+            else
+            {
+                animator.SetBool("run", true);
+            }
+        }
+
+        private void TurnTransforms()
+        {
             if (_horizontalInput > 0)
             {
                 _playerTransform.transform.forward = new Vector3(90, 0, 0);
@@ -70,18 +87,7 @@ namespace ThreeDeePlatformerTest.Scripts
             {
                 _playerTransform.transform.forward = new Vector3(-90, 0, 0);
             }
-
-            if (_horizontalInput == 0)
-            {
-                animator.SetBool("run", false);
-            }
-            else
-            {
-                animator.SetBool("run", true);
-            }
-
             cameraTransform.transform.position = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y, -7f);
-
         }
 
         void FixedUpdate()
@@ -125,12 +131,17 @@ namespace ThreeDeePlatformerTest.Scripts
 
             if (_jumpButtonPressed && (_isGrounded || _doubleJumpAvailable))
             {
-                Debug.Log("Jump");
+                Debug.Log(_player.velocity);
+
+                var velocity = _player.velocity;
+                var jumpVector3 = new Vector3(0, jumpStrength, 0);
                 if (!_isGrounded)
                 {
                     _doubleJumpAvailable = false;
+                     jumpVector3 = new Vector3(0, jumpStrength - (_player.velocity.y * 0.8f), 0);
                 }
-                _player.AddForce(new Vector3(0,7,0), ForceMode.Impulse);
+
+                _player.AddForce(jumpVector3, ForceMode.Impulse);
                 _jumpButtonPressed = !_jumpButtonPressed;
             }
 
